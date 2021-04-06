@@ -1,49 +1,60 @@
-title: 'Event ID 22: DNSEvent (DNS query)'
+title: DNSEvent (DNS query)
+actions:
+  - create
 description: This event generates when a process executes a **DNS query**, whether the
   result is successful or fails, cached or not.
 platform: windows
 log_source: sysmon
 event_code: '22'
-event_version: '4.32'
+event_version: 4.32
+event_filter: null
 event_fields:
-- standard_type: TBD
-  name: RuleName
+- name: RuleName
+  standard_name: tag
   type: string
+  extended_from: null
   description: custom tag mapped to event. i.e ATT&CK technique ID
   sample_value: T1114
-- standard_type: TBD
-  name: UtcTime
+- name: UtcTime
+  standard_name: event_date_creation
   type: date
+  extended_from: null
   description: Time in UTC when event was created
   sample_value: '2019-06-12 00:57:55.254'
-- standard_type: TBD
-  name: ProcessGuid
+- name: ProcessGuid
+  standard_name: process_guid
   type: string
+  extended_from: null
   description: Process Guid of the process that executed the DNS query
   sample_value: '{A98268C1-4DDF-5D00-0000-00102D794100}'
-- standard_type: TBD
-  name: ProcessId
+- name: ProcessId
+  standard_name: process_id
   type: string
+  extended_from: null
   description: Process id of the process that executed the DNS query
   sample_value: '416'
-- standard_type: TBD
-  name: QueryName
+- name: QueryName
+  standard_name: dst_host_name
   type: string
+  extended_from: null
   description: DNS query name
   sample_value: chrome.google.com
-- standard_type: TBD
-  name: QueryStatus
+- name: QueryStatus
+  standard_name: dns_query_status
   type: string
+  extended_from: null
   description: DNS query status
   sample_value: '0'
-- standard_type: TBD
-  name: QueryResults
+- name: QueryResults
+  standard_name: dns_query_results
   type: string
+  extended_from: null
   description: DNS query results
   sample_value: 'type: 5 www3.l.google.com;172.217.7.206;'
-- standard_type: TBD
-  name: Image
+- name: Image
+  standard_name: process_path
   type: string
+  extended_from: null
   description: The full path related to the process that executed the DNS query
   sample_value: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
 references:
@@ -52,3 +63,5 @@ references:
 - text: TrustedSec Sysmon Community Guide
   link: https://github.com/trustedsec/SysmonCommunityGuide/blob/master/dns-query.md
 tags: []
+data_sources:
+  - DNS records

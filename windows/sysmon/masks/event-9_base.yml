@@ -1,4 +1,6 @@
-title: 'Event ID 9: RawAccessRead'
+title: RawAccessRead
+actions:
+  - read
 description: The **RawAccessRead** event detects when a process conducts reading operations
   from the drive using the .\ denotation. This technique is often used by malware
   for data exfiltration of files that are locked for reading, as well as to avoid
@@ -6,33 +8,46 @@ description: The **RawAccessRead** event detects when a process conducts reading
 platform: windows
 log_source: sysmon
 event_code: '9'
-event_version: '4.32'
+event_version: 4.32
+event_filter: null
 event_fields:
 - name: RuleName
+  standard_name: tag
   type: string
+  extended_from: null
   description: custom tag mapped to event. i.e ATT&CK technique ID
   sample_value: T1114
 - name: UtcTime
+  standard_name: event_date_creation
   type: date
+  extended_from: null
   description: Time in UTC when event was created
   sample_value: 4/11/18 5:51
 - name: ProcessGuid
+  standard_name: process_guid
   type: string
+  extended_from: null
   description: Process Guid of the process that conducted reading operations from
     the drive
   sample_value: '{A98268C1-959B-5ACD-0000-0010EFD50200}'
 - name: ProcessId
+  standard_name: process_id
   type: integer
+  extended_from: null
   description: Process ID used by the os to identify the process that conducted reading
     operations from the drive
   sample_value: '2708'
 - name: Image
+  standard_name: process_path
   type: string
+  extended_from: null
   description: File path of the process that conducted reading operations from the
     drive
   sample_value: C:\Windows\System32\svchost.exe
 - name: Device
+  standard_name: target_device
   type: string
+  extended_from: null
   description: Target device
   sample_value: \Device\HarddiskVolume2
 references:
@@ -41,3 +56,5 @@ references:
 - text: TrustedSec Sysmon Community Guide
   link: https://github.com/trustedsec/SysmonCommunityGuide/blob/master/raw-access-read.md
 tags: []
+data_sources:
+  - File monitoring

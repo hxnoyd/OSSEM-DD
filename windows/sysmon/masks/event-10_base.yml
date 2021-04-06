@@ -1,4 +1,6 @@
-title: 'Event ID 10: ProcessAccess'
+title: ProcessAccess
+actions:
+  - open
 description: The **process accessed** event reports when a process opens another process,
   an operation that's often followed by information queries or reading and writing
   the address space of the target process. This enables detection of hacking tools
@@ -10,55 +12,78 @@ description: The **process accessed** event reports when a process opens another
 platform: windows
 log_source: sysmon
 event_code: '10'
-event_version: '4.32'
+event_version: 4.32
+event_filter: null
 event_fields:
 - name: RuleName
+  standard_name: tag
   type: string
+  extended_from: null
   description: custom tag mapped to event. i.e ATT&CK technique ID
   sample_value: T1114
 - name: UtcTime
+  standard_name: event_date_creation
   type: date
+  extended_from: null
   description: Time in UTC when event was created
   sample_value: 4/11/18 5:18
 - name: SourceProcessGuid
+  standard_name: process_guid
   type: string
+  extended_from: null
   description: Process Guid of the source process that opened another process. It
     is derived from a truncated part of the machine GUID, the process start-time and
     the process token ID.
   sample_value: '{A98268C1-9587-5ACD-0000-001004C40000}'
 - name: SourceProcessId
+  standard_name: process_id
   type: integer
+  extended_from: null
   description: Process ID used by the os to identify the source process that opened
     another process. Derived partially from the EPROCESS kernel structure
   sample_value: '916'
 - name: SourceThreadId
+  standard_name: thread_id
   type: integer
+  extended_from: null
   description: ID of the specific thread inside of the source process that opened
     another process
   sample_value: '2804'
 - name: SourceImage
+  standard_name: process_path
   type: string
+  extended_from: null
   description: File path of the source process that created a thread in another process
   sample_value: C:\WINDOWS\system32\svchost.exe
 - name: TargetProcessGuid
+  standard_name: target_process_guid
   type: string
+  extended_from: null
   description: Process Guid of the target process
   sample_value: '{A98268C1-9597-5ACD-0000-00101D690200}'
 - name: TargetProcessId
+  standard_name: target_process_id
   type: integer
+  extended_from: null
   description: Process ID used by the os to identify the target process
   sample_value: '2288'
 - name: TargetImage
+  standard_name: target_process_path
   type: string
+  extended_from: null
   description: File path of the target process
   sample_value: C:\ProgramData\Microsoft\Windows Defender\platform\4.12.17007.18022-0\MsMpEng.exe
 - name: GrantedAccess
+  standard_name: process_granted_access
   type: string
+  extended_from: null
   description: The access flags (bitmask) associated with the process rights requested
     for the target process
   sample_value: '0x1000'
 - name: CallTrace
+  standard_name: process_call_trace
   type: string
+  extended_from: null
   description: Stack trace of where open process is called. Included is the DLL and
     the relative virtual address of the functions in the call stack right before the
     open process call
@@ -69,3 +94,5 @@ references:
 - text: TrustedSec Sysmon Community Guide
   link: https://github.com/trustedsec/SysmonCommunityGuide/blob/master/process-access.md
 tags: []
+data_sources:
+  - Process monitoring

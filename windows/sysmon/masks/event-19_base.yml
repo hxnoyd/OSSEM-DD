@@ -1,41 +1,60 @@
-title: 'Event ID 19: WmiEvent (WmiEventFilter activity detected)'
+title: WmiEvent (WmiEventFilter activity detected)
+actions:
+  - create
 description: When a **WMI event filter is registered**, which is a method used by malware
   to execute, this event logs the WMI namespace, filter name and filter expression.
 platform: windows
 log_source: sysmon
 event_code: '19'
-event_version: '4.32'
+event_version: 4.32
+event_filter: null
 event_fields:
 - name: RuleName
+  standard_name: tag
   type: string
+  extended_from: null
   description: custom tag mapped to event. i.e ATT&CK technique ID
   sample_value: T1114
 - name: EventType
+  standard_name: event_type
   type: string
+  extended_from: null
   description: wmievent type
   sample_value: WmiFilterEvent
 - name: UtcTime
+  standard_name: event_date_creation
   type: date
+  extended_from: null
   description: Time in UTC when event was created
   sample_value: '2018-09-11 23:12:46.606'
 - name: Operation
+  standard_name: wmi_operation
   type: string
+  extended_from: null
   description: wmievent filter operation
   sample_value: Created
 - name: User
+  standard_name: user_name
   type: string
+  extended_from: null
   description: user that created the wmi filter
   sample_value: DESKTOP-LFD11QP\pedro
 - name: EventNamespace
+  standard_name: wmi_namespace
   type: string
+  extended_from: null
   description: event namespace where the wmi clas
   sample_value: root\CimV2
 - name: Name
+  standard_name: wmi_filter_name
   type: string
+  extended_from: null
   description: Wmi filter name being created
   sample_value: Updater
 - name: Query
+  standard_name: wmi_query
   type: string
+  extended_from: null
   description: wmi filter query
   sample_value: '"SELECT * FROM __InstanceModificationEvent WITHIN 60 WHERE TargetInstance
     ISA ''Win32_PerfFormattedData_PerfOS_System'' AND TargetInstance.SystemUpTime
@@ -46,3 +65,5 @@ references:
 - text: TrustedSec Sysmon Community Guide
   link: https://github.com/trustedsec/SysmonCommunityGuide/blob/master/WMI-events.md
 tags: []
+data_sources:
+  - WMI Objects

@@ -1,44 +1,54 @@
-title: 'Event ID 21: WmiEvent (WmiEventConsumerToFilter activity detected)'
+title: WmiEvent (WmiEventConsumerToFilter activity detected)
+actions:
+  - connect
 description: When a consumer **binds to a filter**, this event logs the consumer name
   and filter path.
 platform: windows
 log_source: sysmon
 event_code: '21'
-event_version: '4.32'
+event_version: 4.32
+event_filter: null
 event_fields:
-- standard_type: TBD
-  name: RuleName
+- name: RuleName
+  standard_name: tag
   type: string
+  extended_from: null
   description: custom tag mapped to event. i.e ATT&CK technique ID
   sample_value: T1114
-- standard_type: TBD
-  name: EventType
+- name: EventType
+  standard_name: event_type
   type: string
+  extended_from: null
   description: wmievent type
   sample_value: WmiBindingEvent
-- standard_type: TBD
-  name: UtcTime
+- name: UtcTime
+  standard_name: event_date_creation
   type: date
+  extended_from: null
   description: Time in UTC when event was created
   sample_value: '2018-09-12 00:47:16.997'
-- standard_type: TBD
-  name: Operation
+- name: Operation
+  standard_name: wmi_operation
   type: string
+  extended_from: null
   description: wmievent filter operation
   sample_value: Created
-- standard_type: TBD
-  name: User
+- name: User
+  standard_name: user_name
   type: string
+  extended_from: null
   description: user that created the wmi filter
   sample_value: DESKTOP-LFD11QP\pedro
-- standard_type: TBD
-  name: Consumer
+- name: Consumer
+  standard_name: wmi_consumer_path
   type: string
+  extended_from: null
   description: Consumer created to bind
   sample_value: CommandLineEventConsumer.Name=\"Updater\"
-- standard_type: TBD
-  name: Filter
+- name: Filter
+  standard_name: wmi_filter_path
   type: string
+  extended_from: null
   description: Filter created to bind
   sample_value: __EventFilter.Name=\"Updater\"
 references:
@@ -47,3 +57,5 @@ references:
 - text: TrustedSec Sysmon Community Guide
   link: https://github.com/trustedsec/SysmonCommunityGuide/blob/master/WMI-events.md
 tags: []
+data_sources:
+  - WMI Objects

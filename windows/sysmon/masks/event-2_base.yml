@@ -1,0 +1,72 @@
+title: A process changed a file creation time
+actions:
+  - create
+description: The change file creation time event is registered when a file creation
+  time is explicitly modified by a process. This event helps tracking the real creation
+  time of a file. Attackers may change the file creation time of a backdoor to make
+  it look like it was installed with the operating system. Note that many processes
+  legitimately change the creation time of a file; it does not necessarily indicate
+  malicious activity.
+platform: windows
+log_source: sysmon
+event_code: '2'
+event_version: 4.32
+event_filter: null
+event_fields:
+  - name: RuleName
+    standard_name: tag
+    type: string
+    extended_from: null
+    description: custom tag mapped to event. i.e ATT&CK technique ID
+    sample_value: T1114
+  - name: UtcTime
+    standard_name: event_date_creation
+    type: date
+    extended_from: null
+    description: Time in UTC when event was created
+    sample_value: 4/11/18 5:04
+  - name: ProcessGuid
+    type: string
+    extended_from: null
+    standard_name: process_guid
+    description: Process Guid of the process that changed the file creation time
+    sample_value: '{A98268C1-975A-5ACD-0000-0010DB073A00}'
+  - name: ProcessId
+    standard_name: process_id
+    type: integer
+    extended_from: null
+    description: Process ID used by the os to identify the process changing the file
+      creation time
+    sample_value: '1252'
+  - name: Image
+    standard_name: process_path
+    type: string
+    extended_from: null
+    description: File path of the process that changed the file creation time
+    sample_value: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+  - name: TargetFilename
+    standard_name: file_name
+    type: string
+    extended_from: null
+    description: full path name of the file
+    sample_value: C:\Users\wardog\AppData\Roaming\Microsoft\Windows\Recent\CustomDestinations\7G23PHTPHSQ3S2RVKKPS.temp
+  - name: CreationUtcTime
+    standard_name: file_date_creation
+    type: date
+    extended_from: null
+    description: new creation time of the file
+    sample_value: 11/13/17 16:57
+  - name: PreviousCreationUtcTime
+    standard_name: file_previous_date_creation
+    type: date
+    extended_from: null
+    description: previous creation time of the file
+    sample_value: 4/11/18 5:04
+references:
+  - text: Sysmon Source
+    link: https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon#event-id-2-a-process-changed-a-file-creation-time
+  - text: TrustedSec Sysmon Community Guide
+    link: https://github.com/trustedsec/SysmonCommunityGuide/blob/master/file-create-time-change.md
+tags: []
+data_sources:
+  - File monitoring

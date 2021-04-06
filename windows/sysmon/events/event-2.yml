@@ -10,52 +10,36 @@ log_source: sysmon
 event_code: '2'
 event_version: '4.32'
 event_fields:
-- standard_name: tag
-  standard_type: TBD
-  name: RuleName
+- name: RuleName
   type: string
   description: custom tag mapped to event. i.e ATT&CK technique ID
   sample_value: T1114
-- standard_name: event_date_creation
-  standard_type: TBD
-  name: UtcTime
+- name: UtcTime
   type: date
   description: Time in UTC when event was created
   sample_value: 4/11/18 5:04
-- standard_name: process_guid
-  standard_type: TBD
-  name: ProcessGuid
+- name: ProcessGuid
   type: string
   description: Process Guid of the process that changed the file creation time
   sample_value: '{A98268C1-975A-5ACD-0000-0010DB073A00}'
-- standard_name: process_id
-  standard_type: TBD
-  name: ProcessId
+- name: ProcessId
   type: integer
   description: Process ID used by the os to identify the process changing the file
     creation time
   sample_value: '1252'
-- standard_name: process_path
-  standard_type: TBD
-  name: Image
+- name: Image
   type: string
   description: File path of the process that changed the file creation time
   sample_value: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
-- standard_name: file_name
-  standard_type: TBD
-  name: TargetFilename
+- name: TargetFilename
   type: string
   description: full path name of the file
   sample_value: C:\Users\wardog\AppData\Roaming\Microsoft\Windows\Recent\CustomDestinations\7G23PHTPHSQ3S2RVKKPS.temp
-- standard_name: file_date_creation
-  standard_type: TBD
-  name: CreationUtcTime
+- name: CreationUtcTime
   type: date
   description: new creation time of the file
   sample_value: 11/13/17 16:57
-- standard_name: file_previous_date_creation
-  standard_type: TBD
-  name: PreviousCreationUtcTime
+- name: PreviousCreationUtcTime
   type: date
   description: previous creation time of the file
   sample_value: 4/11/18 5:04

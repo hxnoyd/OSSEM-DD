@@ -1,23 +1,34 @@
-title: Event ID 16 - Sysmon Config State Changed
+title: Sysmon Config State Changed
+actions:
+  - change
 description: This event logs when the local **sysmon configuration is updated**.
 platform: windows
 log_source: sysmon
 event_code: '16'
-event_version: '4.32'
+event_version: 4.32
+event_filter: null
 event_fields:
 - name: UtcTime
+  standard_name: event_date_creation
   type: date
+  extended_from: null
   description: Time in UTC when event was created
   sample_value: 4/11/18 5:25
 - name: Configuration
+  standard_name: sysmon_configuration
   type: string
+  extended_from: null
   description: name of the sysmon config file being updated
   sample_value: C:\Tools\sysmon_config\StartLogging.xml
 - name: ConfigurationFileHash
+  standard_name: sysmon_configuration_hash
   type: string
+  extended_from: null
   description: hash (SHA1) of the sysmon config file being updated
   sample_value: SHA1=647B4A564FA2684252EFB1EA550A06EC432418C8
 references:
 - text: TrustedSec Sysmon Community Guide
   link: https://github.com/trustedsec/SysmonCommunityGuide/blob/master/sysmon-events.md#service-state-change
 tags: []
+data_sources:
+  - Services

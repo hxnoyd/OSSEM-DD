@@ -1,39 +1,57 @@
-title: 'Event ID 12: RegistryEvent (Object create and delete)'
+title: RegistryEvent (Object create and delete)
+actions:
+  - create
+  - delete
 description: '**Registry key and value create and delete** operations map to this event
   type, which can be useful for monitoring for changes to Registry autostart locations,
   or specific malware registry modifications.'
 platform: windows
 log_source: sysmon
 event_code: '12'
-event_version: '4.32'
+event_version: 4.32
+event_filter: null
 event_fields:
 - name: RuleName
+  standard_name: tag
   type: string
+  extended_from: null
   description: custom tag mapped to event. i.e ATT&CK technique ID
   sample_value: T1114
 - name: EventType
+  standard_name: event_type
   type: string
+  extended_from: null
   description: registry event. Either Create or Delete
   sample_value: CreateKey
 - name: UtcTime
+  standard_name: event_date_creation
   type: date
+  extended_from: null
   description: Time in UTC when event was created
   sample_value: 4/11/18 5:25
 - name: ProcessGuid
+  standard_name: process_guid
   type: string
+  extended_from: null
   description: Process Guid of the process that created or deleted a registry key
   sample_value: '{A98268C1-9595-5ACD-0000-0010C2380200}'
 - name: ProcessId
+  standard_name: process_id
   type: integer
+  extended_from: null
   description: Process ID used by the os to identify the process that created or deleted
     a registry key
   sample_value: '2052'
 - name: Image
+  standard_name: process_path
   type: string
+  extended_from: null
   description: File path of the process that created or deleted a registry key
   sample_value: C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeClickToRun.exe
 - name: TargetObject
+  standard_name: registry_key_path
   type: string
+  extended_from: null
   description: complete path of the registry key
   sample_value: HKU.DEFAULT\Software\Microsoft\Office\16.0\Common
 references:
@@ -42,3 +60,5 @@ references:
 - text: TrustedSec Sysmon Community Guide
   link: https://github.com/trustedsec/SysmonCommunityGuide/blob/master/registry-actions.md
 tags: []
+data_sources:
+  - Windows registry

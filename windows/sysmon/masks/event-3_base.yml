@@ -1,0 +1,131 @@
+title: Network connection
+actions:
+  - connect
+description: The network connection event logs TCP/UDP connections on the machine.
+  It is disabled by default. Each connection is linked to a process through the ProcessId
+  and ProcessGUID fields. The event also contains the source and destination host
+  names IP addresses, port numbers and IPv6 status.
+platform: windows
+log_source: sysmon
+event_code: '3'
+event_version: 4.32
+event_filter: null
+event_fields:
+  - name: RuleName
+    standard_name: tag
+    type: string
+    extended_from: null
+    description: custom tag mapped to event. i.e ATT&CK technique ID
+    sample_value: T1114
+  - name: UtcTime
+    standard_name: event_date_creation
+    type: date
+    extended_from: null
+    description: Time in UTC when event was created
+    sample_value: 4/11/18 5:29
+  - name: ProcessGuid
+    standard_name: process_guid
+    type: string
+    extended_from: null
+    description: Process Guid of the process that made the network connection
+    sample_value: '{A98268C1-957F-5ACD-0000-0010EB030000}'
+  - name: ProcessId
+    standard_name: process_id
+    type: integer
+    extended_from: null
+    description: Process ID used by the os to identify the process that made the network
+      connection
+    sample_value: '4'
+  - name: Image
+    standard_name: process_path
+    type: string
+    extended_from: null
+    description: File path of the process that made the network connection
+    sample_value: System
+  - name: User
+    standard_name: user_name
+    type: string
+    extended_from: null
+    description: Name of the account who made the network connection. It usually containes
+      domain name and user name
+    sample_value: NT AUTHORITY\SYSTEM
+  - name: Protocol
+    standard_name: network_protocol
+    type: string
+    extended_from: null
+    description: Protocol being used for the network connection
+    sample_value: udp
+  - name: Initiated
+    standard_name: network_connection_initiated
+    type: boolean
+    extended_from: null
+    description: Indicated process initiated tcp connection
+    sample_value: 'FALSE'
+  - name: SourceIsIpv6
+    standard_name: src_is_ipv6
+    type: boolean
+    extended_from: null
+    description: is the source ip an Ipv6
+    sample_value: 'FALSE'
+  - name: SourceIp
+    standard_name: src_ip_addr
+    type: ip
+    extended_from: null
+    description: source ip address that made the network connection
+    sample_value: 192.168.64.255
+  - name: SourceHostname
+    standard_name: src_host_name
+    type: string
+    extended_from: null
+    description: name of the host that made the network connection
+    sample_value: computer_name or none for broadcast
+  - name: SourcePort
+    standard_name: src_port
+    type: integer
+    extended_from: null
+    description: source port number
+    sample_value: '138'
+  - name: SourcePortName
+    standard_name: src_port_name
+    type: string
+    extended_from: null
+    description: name of the source port being used (i.e. netbios-dgm)
+    sample_value: netbios-dgm
+  - name: DestinationIsIpv6
+    standard_name: dst_is_ipv6
+    type: boolean
+    extended_from: null
+    description: is the destination ip an Ipv6
+    sample_value: C:\Windows\System32\cmd.exe
+  - name: DestinationIp
+    standard_name: dst_ip_addr
+    type: ip
+    extended_from: null
+    description: ip address destination
+    sample_value: 192.168.64.135
+  - name: DestinationHostname
+    standard_name: dst_host_name
+    type: string
+    extended_from: null
+    description: name of the host that received the network connection
+    sample_value: DC-WD-001
+  - name: DestinationPort
+    standard_name: dst_port
+    type: integer
+    extended_from: null
+    description: destination port number
+    sample_value: '138'
+  - name: DestinationPortName
+    standard_name: dst_port_name
+    type: string
+    extended_from: null
+    description: name of the destination port
+    sample_value: netbios-dgm
+references:
+  - text: Sysmon Source
+    link: https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon#event-id-3-network-connection
+  - text: TrustedSec Sysmon Community Guide
+    link: https://github.com/trustedsec/SysmonCommunityGuide/blob/master/network-connections.md
+tags: []
+data_sources:
+  - Process use of network

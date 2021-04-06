@@ -1,41 +1,59 @@
-title: 'Event ID 20: WmiEvent (WmiEventConsumer activity detected)'
+title: WmiEvent (WmiEventConsumer activity detected)
+actions:
+  - create
 description: This event logs the **registration of WMI consumers**, recording the consumer
   name, log, and destination.
 platform: windows
 log_source: sysmon
 event_code: '20'
-event_version: '4.32'
+event_version: 4.32
 event_fields:
-- name: RuleName
+- standard_name: tag
+  name: RuleName
   type: string
+  extended_from: null
   description: custom tag mapped to event. i.e ATT&CK technique ID
   sample_value: T1114
-- name: EventType
+- standard_name: event_type
+  name: EventType
   type: string
+  extended_from: null
   description: wmievent type
   sample_value: WmiConsumerEvent
-- name: UtcTime
+- standard_name: event_date_creation
+  name: UtcTime
   type: date
+  extended_from: null
   description: Time in UTC when event was created
   sample_value: '2018-09-11 23:12:46.606'
-- name: Operation
+- standard_name: wmi_operation
+  name: Operation
   type: string
+  extended_from: null
   description: wmievent filter operation
   sample_value: Created
-- name: User
+- standard_name: user_name
+  name: User
   type: string
+  extended_from: null
   description: user that created the wmi  consumer
   sample_value: DESKTOP-LFD11QP\pedro
-- name: Name
+- standard_name: wmi_consumer_name
+  name: Name
   type: string
+  extended_from: null
   description: name of the consumer created
   sample_value: Updater
-- name: Type
+- standard_name: wmi_consumer_type
+  name: Type
   type: string
+  extended_from: null
   description: Type of wmi consumer
   sample_value: Command Line
-- name: Destination
+- standard_name: wmi_consumer_destination
+  name: Destination
   type: string
+  extended_from: null
   description: command of consumer
   sample_value: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -nop -exec
     bypass -win hidden -noni -enc bm90ZXBhZC5leGU=
@@ -45,3 +63,5 @@ references:
 - text: TrustedSec Sysmon Community Guide
   link: https://github.com/trustedsec/SysmonCommunityGuide/blob/master/WMI-events.md
 tags: []
+data_sources:
+  - WMI Objects

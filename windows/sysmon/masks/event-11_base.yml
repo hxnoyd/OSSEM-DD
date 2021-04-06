@@ -1,4 +1,6 @@
-title: 'Event ID 11: FileCreate'
+title: FileCreate
+actions:
+  - create
 description: '**File create** operations are logged when a file is created or overwritten.
   This event is useful for monitoring autostart locations, like the Startup folder,
   as well as temporary and download directories, which are common places malware drops
@@ -6,35 +8,50 @@ description: '**File create** operations are logged when a file is created or ov
 platform: windows
 log_source: sysmon
 event_code: '11'
-event_version: '4.32'
+event_version: 4.32
+event_filter: null
 event_fields:
 - name: RuleName
+  standard_name: tag
   type: string
+  extended_from: null
   description: custom tag mapped to event. i.e ATT&CK technique ID
   sample_value: T1114
 - name: UtcTime
+  standard_name: event_date_creation
   type: date
+  extended_from: null
   description: Time in UTC when event was created
   sample_value: 4/11/18 6:01
 - name: ProcessGuid
+  standard_name: process_guid
   type: string
+  extended_from: null
   description: Process Guid of the process that created the file
   sample_value: '{A98268C1-958A-5ACD-0000-0010C62F0100}'
 - name: ProcessId
+  standard_name: process_id
   type: integer
+  extended_from: null
   description: Process ID used by the os to identify the process that created the
     file (child)
   sample_value: '1044'
 - name: Image
+  standard_name: process_path
   type: string
+  extended_from: null
   description: File path of the process that created the file
   sample_value: C:\WINDOWS\System32\svchost.exe
 - name: TargetFilename
+  standard_name: file_name
   type: string
+  extended_from: null
   description: Name of the file
   sample_value: C:\Windows\Prefetch\CONHOST.EXE-1F3E9D7E.pf
 - name: CreationUtcTime
+  standard_name: file_date_creation
   type: date
+  extended_from: null
   description: File creation time
   sample_value: 12/4/17 17:38
 references:
@@ -43,3 +60,5 @@ references:
 - text: TrustedSec Sysmon Community Guide
   link: https://github.com/trustedsec/SysmonCommunityGuide/blob/master/file-create.md
 tags: []
+data_sources:
+  - File monitoring
