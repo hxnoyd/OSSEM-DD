@@ -1,0 +1,239 @@
+title: A process primary token was modified
+actions:
+  - change
+description: This event can suggest windows privilege abuse.
+platform: windows
+log_source: windowsdefenderatp
+event_code: DeviceEvents
+event_version: '0'
+event_filter:
+  - ActionType: ProcessPrimaryTokenModified
+event_fields:
+  - name: Timestamp
+    standard_name: event_date_creation
+    type: string
+    extended_from: null
+    description: null
+    sample_value: '2020-05-11T15:20:36.5336218Z'
+  - name: DeviceId
+    standard_name: null
+    type: string
+    extended_from: null
+    description: null
+    sample_value: 3a1af5cf9dad1561515fd533aaa05d61da0b0754
+  - name: DeviceName
+    standard_name: computer_name
+    type: string
+    extended_from: null
+    description: null
+    sample_value: WIN-GG82ULGC9GO.local.net
+  - name: ActionType
+    standard_name: null
+    type: string
+    extended_from: null
+    description: null
+    sample_value: ProcessPrimaryTokenModified
+  - name: InitiatingProcessSHA1
+    standard_name: process_hash_sha1
+    type: string
+    extended_from: null
+    description: null
+    sample_value: ade077b2b9ca925fd988ede8c48ef9b2c6351ab4
+  - name: InitiatingProcessFileName
+    standard_name: process_file_name
+    type: string
+    extended_from: null
+    description: null
+    sample_value: cleanmgr.exe
+  - name: InitiatingProcessFolderPath
+    standard_name: process_folder_path
+    type: string
+    extended_from: null
+    description: null
+    sample_value: 'C:\Windows\System32'
+  - name: InitiatingProcessId
+    standard_name: process_id
+    type: string
+    extended_from: null
+    description: null
+    sample_value: 3532
+  - name: InitiatingProcessCommandLine
+    standard_name: process_command_line
+    type: string
+    extended_from: null
+    description: null
+    sample_value: 'cleanmgr.exe /autoclean /d C:'
+  - name: InitiatingProcessCreationTime
+    standard_name: process_creation_time
+    type: string
+    extended_from: null
+    description: null
+    sample_value: '2020-05-11T15:19:54.8697183Z'
+  - name: InitiatingProcessParentId
+    standard_name: process_parent_id
+    type: string
+    extended_from: null
+    description: null
+    sample_value: 1988
+  - name: InitiatingProcessParentFileName
+    standard_name: process_parent_file_name
+    type: string
+    extended_from: null
+    description: null
+    sample_value: svchost.exe
+  - name: InitiatingProcessParentCreationTime
+    standard_name: process_parent_creation_time
+    type: string
+    extended_from: null
+    description: null
+    sample_value: '2020-05-07T09:57:28.3212033Z'
+  - name: InitiatingProcessMD5
+    standard_name: process_md5
+    type: string
+    extended_from: null
+    description: null
+    sample_value: 921def9c662a594b1dd67d6f14916e2d
+  - name: InitiatingProcessAccountDomain
+    standard_name: initiating_process_account_domain
+    type: string
+    extended_from: null
+    description: null
+    sample_value: local.net
+  - name: InitiatingProcessAccountName
+    standard_name: initiating_process_account_name
+    type: string
+    extended_from: null
+    description: null
+    sample_value: roger
+  - name: InitiatingProcessAccountSid
+    standard_name: initiating_process_account_sid
+    type: string
+    extended_from: null
+    description: null
+    sample_value: S-1-5-21-126132666-1271913926-3619153413-3147288
+  - name: InitiatingProcessAccountUpn
+    standard_name: null
+    type: string
+    extended_from: null
+    description: null
+    sample_value: roger@local.net
+  - name: InitiatingProcessLogonId
+    standard_name: user_logon_id
+    type: string
+    extended_from: null
+    description: null
+    sample_value: 688355622
+  - name: ReportId
+    standard_name: null
+    type: string
+    extended_from: null
+    description: null
+    sample_value: 70528
+  - name: tokenChangeDescription
+    standard_name: null
+    type: string
+    extended_from: AdditionalFields.TokenModificationProperties
+    description: null
+    sample_value: 'The process token of an unknown process was modified'
+  - name: privilegesFlags
+    standard_name: null
+    type: string
+    extended_from: AdditionalFields.TokenModificationProperties
+    description: null
+    sample_value: '[]'
+  - name: isChangedToSystemToken
+    standard_name: null
+    type: boolean
+    extended_from: AdditionalFields.TokenModificationProperties
+    description: null
+    sample_value: 'false'
+  - name: originalTokenIntegrityLevelName
+    standard_name: null
+    type: string
+    extended_from: AdditionalFields.TokenModificationProperties
+    description: null
+    sample_value: high
+  - name: currentTokenIntegrityLevelName
+    standard_name: null
+    type: string
+    extended_from: AdditionalFields.TokenModificationProperties
+    description: null
+    sample_value: high
+  - name: SystemTokenPointer
+    standard_name: null
+    type: long
+    extended_from: AdditionalFields
+    description: null
+    sample_value: 18446687491267279008
+  - name: OriginalTokenIntegrityLevel
+    standard_name: null
+    type: integer
+    extended_from: AdditionalFields
+    description: null
+    sample_value: 12288
+  - name: OriginalTokenPointer
+    standard_name: null
+    type: long
+    extended_from: AdditionalFields
+    description: null
+    sample_value: 18446687491811590224
+  - name: OriginalTokenPrivEnabled
+    standard_name: null
+    type: long
+    extended_from: AdditionalFields
+    description: null
+    sample_value: 1887436800
+  - name: OriginalTokenPrivPresent
+    standard_name: null
+    type: long
+    extended_from: AdditionalFields
+    description: null
+    sample_value: 130793013024
+  - name: OriginalTokenSource
+    standard_name: null
+    type: long
+    extended_from: AdditionalFields
+    description: null
+    sample_value: VXNlcjMyIAA=
+  - name: OriginalTokenUserSid
+    standard_name: null
+    type: string
+    extended_from: AdditionalFields
+    description: null
+    sample_value: S-1-5-21-126432666-1270913921-3679153423-464231
+  - name: CurrentTokenIntegrityLevel
+    standard_name: null
+    type: integer
+    extended_from: AdditionalFields
+    description: null
+    sample_value: 12288
+  - name: CurrentTokenPointer
+    standard_name: null
+    type: long
+    extended_from: AdditionalFields
+    description: null
+    sample_value: 18446687491811590224
+  - name: CurrentTokenPrivEnabled
+    standard_name: null
+    type: long
+    extended_from: AdditionalFields
+    description: null
+    sample_value: 1888485376
+  - name: CurrentTokenSource
+    standard_name: null
+    type: long
+    extended_from: AdditionalFields
+    description: null
+    sample_value: VXNlcjMyIAA=
+  - name: CurrentTokenUserSid
+    standard_name: null
+    type: string
+    extended_from: AdditionalFields
+    description: null
+    sample_value: S-1-5-21-126432666-1270913926-3679153413-464237
+references:
+  - text: Examining access token privileges with MDATP and Kusto
+    link: https://www.siriussecurity.nl/blog/2019/10/1/examining-access-token-privileges-with-mdatp-and-kusto
+tags: []
+data_sources:
+  - Access tokens

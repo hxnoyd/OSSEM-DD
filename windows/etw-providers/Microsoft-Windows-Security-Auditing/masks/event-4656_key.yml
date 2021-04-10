@@ -1,0 +1,141 @@
+title: A handle to a registry key was requested
+actions:
+  - create
+  - read
+  - delete
+  - modify
+  - write
+description: This event indicates that a specific access was requested for a key
+platform: windows
+log_source: Microsoft-Windows-Security-Auditing
+event_code: '4656'
+event_version: '1'
+event_filter:
+  - ObjectType: Key
+event_fields:
+  - name: SubjectUserSid
+    standard_name: user_sid
+    type: SID
+    extended_from: null
+    description: SID of account that requested a handle to an object
+    sample_value: S-1-5-21-3457937927-2839227994-823803824-1104
+  - name: SubjectUserName
+    standard_name: user_name
+    type: string
+    extended_from: null
+    description: the name of the account that requested a handle to an object.
+    sample_value: dadmin
+  - name: SubjectDomainName
+    standard_name: user_domain
+    type: string
+    extended_from: null
+    description: Subject's domain or computer name.
+    sample_value: CONTOSO
+  - name: SubjectLogonId
+    standard_name: user_logon_id
+    type: HexInt64
+    extended_from: null
+    description: hexadecimal value that can help you correlate this event with recent
+      events that might contain the same Logon ID
+    sample_value: '0x4367b'
+  - name: ObjectServer
+    standard_name: object_server
+    type: string
+    extended_from: null
+    description: has "Security" value for this event.
+    sample_value: Security
+  - name: ObjectType
+    standard_name: object_type
+    type: string
+    extended_from: null
+    description: The type of an object that was accessed during the operation.
+    sample_value: Key
+  - name: ObjectName
+    standard_name: registry_key
+    type: string
+    extended_from: null
+    description: registry key requested
+    sample_value: \registry\machine\system\controlset001\control\lsa
+  - name: HandleId
+    standard_name: handle_id
+    type: string
+    extended_from: null
+    description: hexadecimal value of the handle. correlate with event 4663 
+      to retrieve the effective permissions.
+    sample_value: '0x310'
+  - name: TransactionId
+    standard_name: transaction_guid
+    type: string
+    extended_from: null
+    description: 'unique GUID of the transaction. This field can help you correlate
+      this event with other events that might contain the same Transaction ID, such
+      as "4660(S): An object was deleted."'
+    sample_value: '{00000000-0000-0000-0000-000000000000}'
+  - name: AccessList
+    standard_name: access_list
+    type: string
+    extended_from: null
+    description: the list of access rights which were requested by Subject\Security
+      ID.
+    sample_value: '%%1538 %%1541 %%4416 %%4417 %%4418 %%4419 %%4420 %%4423 %%4424'
+  - name: AccessReason
+    standard_name: access_reason
+    type: string
+    extended_from: null
+    description: the list of access check results. The format of this varies, depending
+      on the object. For kernel objects, this field does not apply.
+    sample_value: '%%1538: %%1804 %%1541: %%1809 %%4416: %%1809 %%4417: %%1809 %%4418:
+      %%1802 D:(D;;LC;;;S-1-5-21-3457937927-2839227994-823803824-1104) %%4419: %%1809
+      %%4420: %%1809 %%4423: %%1811 D:(A;OICI;FA;;;S-1-5-21-3457937927-2839227994-823803824-1104)
+      %%4424: %%1809'
+  - name: AccessMask
+    standard_name: access_mask
+    type: string
+    extended_from: null
+    description: hexadecimal mask for the requested or performed operation
+    sample_value: '0x12019f'
+  - name: PrivilegeList
+    standard_name: null
+    type: string
+    extended_from: null
+    description: the list of user privileges which were used during the operation, for
+      example, SeBackupPrivilege.
+    sample_value: '-'
+  - name: RestrictedSidCount
+    standard_name: null
+    type: integer
+    description: Number of restricted SIDs in the token. Applicable to only specific
+      Object Types.
+    sample_value: 0
+  - name: ProcessId
+    standard_name: process_id
+    type: Pointer
+    extended_from: null
+    description: hexadecimal Process ID of the process through which the access was
+      requested.
+    sample_value: '0x1074'
+  - name: ProcessName
+    standard_name: process_path
+    type: string
+    extended_from: null
+    description: full path and the name of the executable for the process.
+    sample_value: C:\Windows\System32\notepad.exe
+  - name: ResourceAttributes
+    standard_name: null
+    type: string
+    description: attributes associated with the object. For some objects, the field
+      does not apply and "-" is displayed
+    sample_value: S:AI(RA;ID;;;;WD;("Impact_MS",TI,0x10020,3000))
+references:
+  - text: MS Source
+    link: https://github.com/MicrosoftDocs/windows-itpro-docs/blob/master/windows/security/threat-protection/auditing/event-4656.md
+  - text: MS Security Auditing Category - Object Access
+    link: https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/advanced-security-audit-policy-settings#object-access
+  - text: MS Security Auditing Sub-category - Audit Registry
+    link: https://github.com/MicrosoftDocs/windows-itpro-docs/tree/master/windows/security/threat-protection/auditing/audit-registry.md
+tags:
+  - Object Access
+  - Audit Registry
+data_sources:
+  - Windows Registry
+  - Windows event logs
